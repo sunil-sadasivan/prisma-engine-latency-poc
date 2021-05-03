@@ -12,3 +12,6 @@ $ docker-compose run current-with-napi
 
 ## Result
 ![image](https://user-images.githubusercontent.com/31223104/116890435-9f23da00-abfb-11eb-9c6c-1a8c8f68f57e.png)
+
+## Note
+Running on Darwin directly without N-API appears to run fast. This could be related to the linux (Alpine and Debian) builds. 
