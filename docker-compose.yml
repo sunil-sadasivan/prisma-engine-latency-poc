@@ -1,15 +1,27 @@
 version: '3'
 services:
 
+  setup:
+    build: ./current-without-napi
+    environment:
+      DATABASE_URL: postgresql://test:test@postgres:5432/test?schema=public
+    command: "yarn prisma migrate dev"
+    links:
+      - "postgres"
+
   current-without-napi:
     build: ./current-without-napi
     environment:
       DATABASE_URL: postgresql://test:test@postgres:5432/test?schema=public
+    links:
+      - "setup"
 
   current-with-napi:
     build: ./current-with-napi
     environment:
       DATABASE_URL: postgresql://test:test@postgres:5432/test?schema=public
+    links:
+      - "setup"
 
   postgres:
     image: "postgres:11"
